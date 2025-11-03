@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    # Nota: incluimos allowPublicKeyRetrieval=true para evitar el error
+    # "Public Key Retrieval is not allowed" cuando se usan usuarios
+    # con autenticación caching_sha2_password desde clientes remotos.
+    url: jdbc:mysql://192.168.1.96:3306/modaexpress?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: modaexpress
+    password: 123456789
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: modaexpress_mongo
+  flyway:
+    enabled: false # temporal: deshabilitado hasta alinear versión/compatibilidad
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
